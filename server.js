@@ -9,6 +9,7 @@ const authRoute = require ('./routes/authRoute');
 const categoryRoute = require ('./routes/categoryRoute');
 const brandRoute = require ('./routes/brandRoute');
 const productRoute = require ('./routes/productRoute');
+const reviewRoutes = require ('./routes/reviewRoute');
 
 
 //middleware
@@ -24,6 +25,7 @@ app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/category', categoryRoute);
 app.use('/api/v1/brand', brandRoute);
 app.use('/api/v1/product', productRoute);
+app.use('/api/v1/review', reviewRoutes);
 
 
 

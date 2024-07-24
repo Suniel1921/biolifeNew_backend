@@ -1,6 +1,5 @@
-
-
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -39,6 +38,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         // required: true
     },
+    slug: { 
+        type: String,
+        unique: true
+    },
     images: [{
         type: String
     }]
@@ -50,6 +53,13 @@ productSchema.pre('save', function(next) {
     }
     next();
 });
+
+
+productSchema.pre('save', function(next) {
+    this.slug = slugify(this.name, { lower: true });
+    next();
+});
+
 
 const productModel = mongoose.model('Product', productSchema);
 module.exports = productModel;
