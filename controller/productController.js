@@ -3,6 +3,7 @@ const categoryModel = require("../models/categoryModel");
 const productModel = require("../models/productModel");
 const cloudinary = require('cloudinary').v2;
 
+
 //create product
 // exports.createProduct = [
 //     upload.array('images', 5), // Accept up to 5 images
