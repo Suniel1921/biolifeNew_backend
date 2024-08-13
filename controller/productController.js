@@ -225,3 +225,28 @@ exports.getRelatedProducts = async (req, res) => {
         return res.status(500).json({ success: false, message: `Internal server error: ${error.message}` });
     }
 };
+
+
+
+
+
+// testing purpose
+
+// Example endpoint: /api/v1/product/getProductsByCategory/:categoryId
+exports.getProductsByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+
+        // Find products by category
+        const products = await productModel.find({ category: categoryId }).populate('brand');
+
+        if (products.length === 0) {
+            return res.status(404).json({ success: false, message: 'No products found for this category' });
+        }
+
+        return res.status(200).json({ success: true, message: 'Products found', products });
+    } catch (error) {
+        console.error('Error fetching products by category:', error);
+        return res.status(500).json({ success: false, message: `Internal server error: ${error.message}` });
+    }
+};
